@@ -9,9 +9,12 @@
     <Window.Resources>
         <Style TargetType="TextBlock" >
             <Setter Property="FontFamily" Value="Gothic"/>
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Background" Value="Red" />
         </Style>
     </Window.Resources>
+    
     <Grid>
-        
+        <TextBlock Grid.Row="0"> ddd</TextBlock>
     </Grid>
 </Window>
