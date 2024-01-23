@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCVSharp", "OpenCVSharp\OpenCVSharp.csproj", "{FA45F769-98B7-40E8-881A-B64A1AC1A9A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cell_Trainer", "Cell_Trainer\Cell_Trainer.csproj", "{A88156BD-0B29-43EF-A05D-F84ED846662C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell_Trainer", "Cell_Trainer\Cell_Trainer.csproj", "{A88156BD-0B29-43EF-A05D-F84ED846662C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoTalk", "KakaoTalk\KakaoTalk.csproj", "{AE73E472-DEBC-4C97-879B-1417B44AE771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A88156BD-0B29-43EF-A05D-F84ED846662C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88156BD-0B29-43EF-A05D-F84ED846662C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A88156BD-0B29-43EF-A05D-F84ED846662C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE73E472-DEBC-4C97-879B-1417B44AE771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE73E472-DEBC-4C97-879B-1417B44AE771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE73E472-DEBC-4C97-879B-1417B44AE771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE73E472-DEBC-4C97-879B-1417B44AE771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
