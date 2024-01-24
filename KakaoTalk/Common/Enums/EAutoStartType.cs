@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common.Enums
 {
-    [TypeConverter(typeof(EnumDescriptiponConverter<EAutoStartType>))]
+    [TypeConverter(typeof(EnumDescriptionConverter<EAutoStartType>))]
     public enum EAutoStartType
     {
         [Description("잠금모드")]

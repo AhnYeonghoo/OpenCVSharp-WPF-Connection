@@ -23,7 +23,7 @@ namespace Common.Converters
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
             if (attributes.Length < 1)
             {
-                return null
+                return null;
             }
             else
             {
