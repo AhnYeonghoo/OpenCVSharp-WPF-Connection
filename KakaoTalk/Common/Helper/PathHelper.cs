@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace Common.Helper
 {
@@ -11,7 +12,7 @@ namespace Common.Helper
     {
         static PathHelper()
         {
-            if (Directory.Exists(GetLocalDirectory() is false))
+            if (Directory.Exists(GetLocalDirectory()) is false)
             {
                 Directory.CreateDirectory(GetLocalDirectory());
             }

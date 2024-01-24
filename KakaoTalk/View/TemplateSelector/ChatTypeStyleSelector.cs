@@ -13,7 +13,7 @@ namespace Views.TemplateSelector
     {
         public ChatTypeStyleSelector() { }
         public DataTemplate NormalTemplate { get; set; }
-        public DateTemplate PhotoTemplate { get; set; }
+        public DataTemplate PhotoTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
