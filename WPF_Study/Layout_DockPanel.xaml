@@ -1,0 +1,46 @@
+﻿<Window x:Class="WPF_Study.Layout_DockPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Study"
+        mc:Ignorable="d"
+        Title="Layout_DockPanel" Height="450" Width="800">
+    <DockPanel>
+        <Button
+            DockPanel.Dock="Top"
+            Height="50"
+            Background="Red" />
+        <Button
+            DockPanel.Dock="Left"
+            Width="50"
+            Background="Yellow"/>
+        <Button
+            DockPanel.Dock="Bottom"
+            Height="50"
+            Background="Pink" />
+        <Button
+            DockPanel.Dock="Right"
+            Width="50"
+            Background="Blue" />
+        <Button 
+            DockPanel.Dock="Top"
+            Height="50"
+            Background="Purple" />
+        <Button
+            DockPanel.Dock="Left"
+            Width="50"
+            Background="Orange"/>
+        <Button
+            DockPanel.Dock="Bottom"
+            Height="50"
+            Background="Green"/>
+        <Button
+            DockPanel.Dock="Right"
+            Width="50"
+            Background="SkyBlue"/>
+        <Button
+            Background="HotPink"/>
+        
+    </DockPanel>
+</Window>

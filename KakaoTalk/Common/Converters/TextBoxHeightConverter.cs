@@ -21,7 +21,7 @@ namespace Common.Converters
             )
         {
             if (parameter is null)
-                
+                throw new Exception("There is no parameter set value.")
         }
     }
 }
