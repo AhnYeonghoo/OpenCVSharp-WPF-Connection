@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cell_Trainer", "Cell_Traine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KakaoTalk", "KakaoTalk\KakaoTalk.csproj", "{AE73E472-DEBC-4C97-879B-1417B44AE771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Study", "WPF_Study\WPF_Study.csproj", "{EB35C6A4-E445-4763-A6C0-EF8278F1DECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Study", "WPF_Study\WPF_Study.csproj", "{EB35C6A4-E445-4763-A6C0-EF8278F1DECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{ED65A097-D271-4A7B-A992-C5CCC5034E5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EB35C6A4-E445-4763-A6C0-EF8278F1DECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB35C6A4-E445-4763-A6C0-EF8278F1DECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB35C6A4-E445-4763-A6C0-EF8278F1DECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED65A097-D271-4A7B-A992-C5CCC5034E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED65A097-D271-4A7B-A992-C5CCC5034E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED65A097-D271-4A7B-A992-C5CCC5034E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED65A097-D271-4A7B-A992-C5CCC5034E5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
