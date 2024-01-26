@@ -21,7 +21,40 @@ namespace Common.Converters
             )
         {
             if (parameter is null)
-                throw new Exception("There is no parameter set value.")
+                throw new Exception("There is no parameter set value.");
+
+            string inputValue = value[0].ToString()!;
+            Int16 maxNewLineCnt = Int16.Parse(value[1].ToString()!);
+            double maxHeight = double.Parse(value[2].ToString()!);
+            double defaultHeight = double.Parse(parameter.ToString()!);
+
+            int newLineCnt = inputValue.Split(new string[] { "\r\n" }, StringSplitOptions.None).Length;
+
+            if (newLineCnt >= maxNewLineCnt)
+            {
+                var height = defaultHeight + ((newLineCnt - maxNewLineCnt) * IncreaseHeight);
+                if (height >= maxHeight)
+                {
+                    return maxHeight;
+                }
+                else
+                {
+                    return height;
+                }
+            }
+            else
+            {
+                return defaultHeight;
+            }
+        }
+
+        public object[] ConvertBack(
+            object value,
+            Type[] targetType,
+            object parameter,
+            CultureInfo culture)
+        {
+            return null;
         }
     }
 }

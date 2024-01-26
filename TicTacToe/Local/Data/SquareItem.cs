@@ -16,7 +16,7 @@ namespace TicTacToe.Local.Data
         public Player Player
         {
             get => _player;
-            set { _player = value; OnPropertyChanged() }
+            set { _player = value; OnPropertyChanged(); }
         }
 
         public string WinnerMessage => "Win : " + Player;

@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Local\" />
     <Folder Include="Themes\" />
     <Folder Include="Properties\" />
   </ItemGroup>

@@ -61,7 +61,7 @@ namespace TicTacToe.Local.Mvvm
 
             if (CalculateWinner() is SquareItem winner)
             {
-                Finish(winner.Player)
+                Finish(winner.Player);
             }
             else if (PlayCount == 9)
             {
