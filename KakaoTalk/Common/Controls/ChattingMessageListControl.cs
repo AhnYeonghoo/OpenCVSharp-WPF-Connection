@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 namespace Common.Controls
 {
     [TemplatePart(Name = ChatListScrollViewerPartName, Type = typeof(ScrollViewer))]
-    [TemplatePart(Name = ScrollIntoBottomBtnPartName, Type = typeof(Button)]
+    [TemplatePart(Name = ScrollIntoBottomBtnPartName, Type = typeof(Button))]
     public class ChattingMessageListControl : ListBox
     {
         private const string ChatListScrollViewerPartName = "PART_ChatListScrollViewer";
@@ -99,8 +99,31 @@ namespace Common.Controls
                 _scrollIntoBottomBtnPart.Click += (_, __) =>
                 {
                     if (ScrollIntoBottomCommand is not null) ScrollIntoBottomCommand.Execute(ScrollIntoBottomcommandParameter);
-                }
+                };
+            }
+        }
+
+        private void ScrollViewerPart_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.ExtentHeight <= 550) return;
+
+            if ( (e.ExtentHeight - 1500) >= e.VerticalOffset)
+            {
+                _scrollIntoBottomBtnPart!.Visibility = Visibility.Visible;
+            }
+            else if (e.VerticalOffset >= (e.ExtentHeight - e.ViewportHeight - 500))
+            {
+                _scrollIntoBottomBtnPart!.Visibility = Visibility.Collapsed;
+            }
+
+            if (e.ExtentHeight > 3000 && e.VerticalOffset <= 500)
+            {
+                if (RequestGetDataCommand is not null)
+                    RequestGetDataCommand.Execute(Guid.NewGuid());
+                ScrollViewer scrollViewer = sender as ScrollViewer;
+                scrollViewer.ScrollToVerticalOffset(510);
             }
         }
     }
+
 }
