@@ -144,7 +144,7 @@ namespace Common.Controls
             }
 
             if (_friendInfoPart is null) return;
-            _friendInfoPart.MouseDown += this._friendInfoPart_MouseDown;
+            _friendInfoPart.MouseDown += this.FriendInfoPart_MouseDown;
         }
 
         private void FriendInfoPart_MouseDown(object sender, MouseButtonEventArgs e)
