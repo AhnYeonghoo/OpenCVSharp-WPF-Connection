@@ -51,11 +51,34 @@ namespace Common.Controls
             set { this.SetValue(IsEllipseVisibleProperty, value); }
         }
 
-        public static readonly DependencyProperty? IsDecriptVisibleProperty =
+        public static readonly DependencyProperty? IsDescriptVisibleProperty =
             DependencyProperty.Register(
                 "IsDescriptVisible",
                 typeof(Boolean),
                 typeof(EllipseButton), new PropertyMetadata(true));
 
+        public bool IsDescriptVisible
+        {
+            get { return (Boolean)this.GetValue(IsDescriptVisibleProperty); }
+            set { this.SetValue(IsDescriptVisibleProperty, value); }
+        }
+
+        public static readonly DependencyProperty? DescriptProperty =
+            DependencyProperty.Register(
+                "Descript",
+                typeof(String),
+                typeof(EllipseButton),
+                new PropertyMetadata(string.Empty));
+
+        public string? Descript
+        {
+            get { return (string)this.GetValue(DescriptProperty); }
+            set { this.SetValue(DescriptProperty, value); }
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate(); 
+        }
     }
 }
