@@ -29,7 +29,7 @@
         <DataTemplate x:Key="value1Template">
             <TextBlock TextAlignment="Center" Text="{Binding Path=value1}" />
         </DataTemplate>
-        <DataTemplate x:Key="value2Tempate">
+        <DataTemplate x:Key="value2Template">
             <TextBlock TextAlignment="Left" Text="{Binding Path=value2}" />
         </DataTemplate>
 
@@ -206,6 +206,200 @@ BorderThickness="1" />
                 Content="M 0 0 L 4 4 L 8 0 Z" />
             </Grid>
         </ControlTemplate>
+        <ControlTemplate x:Key="HorizontalScrollBar"
+                         TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18" />
+                    <ColumnDefinition Width="0.00001" />
+                    <ColumnDefinition MaxWidth="18" />
+                </Grid.ColumnDefinitions>
+                <Border
+                    Grid.ColumnSpan="3"
+                    CornerRadius="0"
+                    Background="#FFF" />
+                <RepeatButton
+                    Grid.Column="0"
+                    Style="{StaticResource ScrollBarLineButton}"
+                    Width="18"
+                    Command="ScrollBar.LineLeftCommand"
+                    Content="M 4 0 L 4 8 L 0 4 Z" />
+                <Track
+                    Name="PART_Track"
+                    Grid.Column="1"
+                    IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}"
+                                      Command="ScrollBar.PageLeftCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb 
+                            Style="{StaticResource ScrollBarThumb}"
+                            Margin="0,1,0,1"
+                            Background="{StaticResource NormalBrush}"
+                            BorderBrush="{StaticResource NormalBorderBrush}"
+                            />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton
+                            Style="{StaticResource ScrollBarPageButton}"
+                            Command="ScrollBar.PageRightCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton
+                    Grid.Column="3"
+                    Style="{StaticResource ScrollBarLineButton}"
+                    Width="18"
+                    Command="ScrollBar.LineRightCommand"
+                    Content="M 0 0 L 4 4 L 0 8 Z" />
+            </Grid>
+        </ControlTemplate>
+        <!-- Style for overall ScrollBar -->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template"
+                            Value="{StaticResource HorizontalScrollBar}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18" />
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template"
+                                Value="{StaticResource VerticalScrollBar}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+            <!-- Style for overall ScrollViewer -->
+        <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}" >
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter Grid.Column="1" />
+                            <ScrollBar Name="PART_VerticalScrollBar"
+                                       Value="{TemplateBinding VerticalOffset}"
+                                       Maximum="{TemplateBinding ScrollableHeight}"
+                                       ViewportSize="{TemplateBinding ViewportHeight}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                            <ScrollBar Name="PART_HorizontalScrollBar"
+                                       Orientation="Horizontal"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       Value="{TemplateBinding HorizontalOffset}"
+                                       Maximum="{TemplateBinding ScrollableWidth}"
+                                       ViewportSize="{TemplateBinding ViewportWidth}"
+                                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" Background="#Ff2D2D30" >
+                <Image Width="25" Height="25" Margin="15,8,0,0" Source="./Resource/Icon_Eye.png"/>
+                <TextBlock Text="Log Viewer" Foreground="#FF7AC1FF" FontSize="17" FontWeight="Normal"
+                           Margin="10,15,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ListView x:Name="LogListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="10"
+                      Background="#FF232325" Canvas.Top="4" FontWeight="Normal" HorizontalContentAlignment="Center"
+                      Foreground="White" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="LogListView_SelectionChanged"
+                      Margin="8" >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding LogType}" Value="Error" >
+                                <Setter Property="Background" Value="#FFFF4141" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border CornerRadius="2" SnapsToDevicePixels="True"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            Background="{TemplateBinding Background}">
+                                        <Border Name="InnerBorder" CornerRadius="1" BorderThickness="1">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition MaxHeight="11" />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <Rectangle Name="UpperHighlight" Visibility="Collapsed" Fill="#75FFFFFF" />
+                                                <GridViewRowPresenter Grid.RowSpan="2"
+                                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            </Grid>
+                                        </Border>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True" >
+                                            <Setter Property="Background" Value="DarkBlue" />
+                                            <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                                            <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                        <Trigger Property="IsFocused" Value="True">
+                                            <Setter Property="Background" Value="#FF4A4AFF"/>
+                                            <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                                            <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
+                        <GridViewColumn Header="Log Time" CellTemplate="{StaticResource value1Template}" Width="150" DisplayMemberBinding="{Binding LogTime}" />
+                        <GridViewColumn Header="Log Type" CellTemplate="{StaticResource value1Template}" Width="150" DisplayMemberBinding="{Binding LogType}" />
+                        <GridViewColumn Header="Unit" CellTemplate="{StaticResource value1Template}" Width="150" DisplayMemberBinding="{Binding Unit}" />
+                        <GridViewColumn Header="Content" CellTemplate="{StaticResource value2Template}" Width="1165" DisplayMemberBinding="{Binding Content}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+                      
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="∴ Selected Log Detail ∴" Foreground="#FF7ac1ff" FontSize="13" Background="#FF2D2D30" Margin="40, 5, 0, 2" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Name="tbTime" Text="Time :" Foreground="White" FontSize="12" Background="#FF2D2D30" Margin="40,5,0,2" Width="300" />
+                <TextBlock Name="tbType" Text="Type :" Foreground="White" FontSize="12" Background="#FF2D2D30" Margin="40,5,0,2" Width="300" />
+                <TextBlock Name="tbUnit" Text="Unit :" Foreground="White" FontSize="12" Background="#FF2D2D30" Margin="40,5,0,2" Width="300" />
+            </StackPanel>
+            <TextBlock Name="tbContent" Grid.Row="2"  Text="Content :" Foreground="White" FontSize="12"
+                       Background="#FF2D2D30" Margin="40,0,36,25" TextWrapping="Wrap"/>
+        </Grid>
+    </Grid>
 </UserControl>
