@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WPF_Study
@@ -21,6 +22,30 @@ namespace WPF_Study
         static GPage()
         {
             
+        }
+
+        public static UIElement CurrentPage
+        {
+            get
+            {
+                if (MainWindow.GridMain.Children.Count == 0)
+                    return null;
+                else return MainWindow.GridMain.Children[0];
+            }
+        }
+
+        public static bool ChangeCurrentPage(IPage newPage)
+        {
+            IPage oldPage = (IPage)CurrentPage;
+            if (oldPage == null || oldPage.Exit())
+            {
+                newPage.Enter();
+                MainWindow.GridMain.Children.Clear();
+                MainWindow.GridMain.Children.Add((UIElement)newPage);
+                return true;
+            }
+            return false;
+
         }
     }
 }
